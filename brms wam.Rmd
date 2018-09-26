@@ -1,10 +1,13 @@
 ---
-title: "brms wild animal model implementation"
+title: "wild animal model implementation with brms"
 author: "Sasha Mikheyev"
 date: "9/26/2018"
-output:
-  html_document: default
-  pdf_document: default
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+    theme: united 
+    highlight: tango
 ---
 
 ```{r setup, include=FALSE}
@@ -14,7 +17,7 @@ library(brms)
 library(tidyverse)
 ```
 
-## MCMCglmm following [tutorial](http://www.wildanimalmodels.org/tiki-index.php?page=The+ecologists+guide+to+the+animal+model&highlight=tutorials#ASReml_R)
+# MCMCglmm following [tutorial](http://www.wildanimalmodels.org/tiki-index.php?page=The+ecologists+guide+to+the+animal+model&highlight=tutorials#ASReml_R)
 
 ```{r cache=TRUE}
 Data <- as.data.frame(read.table(file = "./gryphon.txt", header = TRUE))
@@ -47,7 +50,7 @@ summary(model2.1)
 plot(model2.1)
 ```
 
-## brms, following [vignette](https://cran.r-project.org/web/packages/brms/vignettes/brms_phylogenetics.html)
+# brms, following [vignette](https://cran.r-project.org/web/packages/brms/vignettes/brms_phylogenetics.html)
 
 ```{r cache=TRUE}
 inv.phylo <- MCMCglmm::inverseA(Ped)
@@ -64,6 +67,8 @@ summary(model_simple1.1)
 plot(model_simple1.1)
 
 ```
+
+Bivariate model
 
 ```{r cache = TRUE}
 model_simple2.1 <- brm(
